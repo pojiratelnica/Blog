@@ -1,0 +1,15 @@
+{% extends 'posts/base.html'%}
+
+{% block content %}
+	<h1>Manga list</h1>
+	{% for i in news %}
+		<h2><a href="">{{ i.title }}</a></h2>
+		<p><small>{{ i.author }}</small></p>
+		<p>{{ i.text }}</p>
+		<p><img src="{{i.image.url}}" width="100%"></p>
+		<p>{{ i.category.title }} | {{ i.category.slug}}</p>
+		<p>{{ i.created_at }} | {{ i.updated_at }}</p>
+		<a href="{% url 'likes' i.id %}" class="btn btn-primary">{{i.likes}} Like></a>
+		<a href="{% url 'dislikes' i.id %}" class="btn btn-danger">{{i.dislikes}} Dislike </a>
+	{% endfor %}
+{% endblock %}

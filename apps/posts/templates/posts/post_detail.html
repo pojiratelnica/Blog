@@ -1,0 +1,13 @@
+{% extends 'posts/base.html'%}
+
+{% block content %}
+	<h1>Manga list</h1>
+	{% for i in news %}
+		<h2><a href="">{{ i.title }}</a></h2>
+		<p><small>{{ i.author }}</small></p>
+		<p>{{ i.text }}</p>
+		<p><img src=""></p>
+		<p>{{ i.genre.title }} | {{ i.genre.slug}}</p>
+		<p>{{ i.created_at }} | {{ i.updated_at }}</p>
+	{% endfor %}
+{% endblock %}

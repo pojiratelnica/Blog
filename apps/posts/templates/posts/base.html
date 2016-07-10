@@ -45,8 +45,21 @@
                     <li>
                         <a href="">О нас</a>
                     </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Категории <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for category in categories %}
+                                <li><a href="">{{ category.title }}</a></li>
+                            {% endfor %}
+                        </ul> 
+                    </li>
                     <li>
-                        <a href="">Контакты</a>
+                        <a href="{% url 'by_likes_down' %}" class="btn btn-primary" style="margin-left:10px; margin-right:10px; color:#fff;">Like <span class="fa fa-lg fa-sort-amount-asc"></span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'by_dislikes_down' %}" class="btn btn-danger" style="margin-left:10px; margin-right:10px; color:#fff;">Dislike <span class="fa fa-lg fa-sort-amount-asc"></span></a>
                     </li>
                 </ul>
             </div>
@@ -70,7 +83,7 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Фильтрация</h4>
-                    <div class="input-group">
+                    <!-- <div class="input-group"> -->
                         <!-- <input type="text" class="form-control"> -->
                         <!-- <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
@@ -79,15 +92,18 @@
                         </span> -->
                         <a href="{% url 'by_likes_down' %}" class="btn btn-primary">Like <span class="fa fa-lg fa-sort-amount-asc"></span></a>
                         <a href="{% url 'by_likes_up' %}" class="btn btn-primary">Like <span class="fa fa-lg fa-sort-amount-desc"></span></a>
+                        <hr>
+                        <p> 
                         <a href="{% url 'by_dislikes_down' %}" class="btn btn-danger">Dislike <span class="fa fa-lg fa-sort-amount-asc"></span></a>
                         <a href="{% url 'by_dislikes_up' %}" class="btn btn-danger">Dislike <span class="fa fa-lg fa-sort-amount-desc"></span></a>
-                    </div>
+                        </p>
+                    <!-- </div> -->
                     <!-- /.input-group -->
                 </div>
 
                 <!-- Blog Categories Well -->
                 <div class="well">
-                    <h4>Жанры</h4>
+                    <h4>Категории</h4>
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled">

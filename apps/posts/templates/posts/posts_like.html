@@ -2,7 +2,6 @@
 
 {% block content %}
 	<h1>Manga list</h1>
-	
 	{% for i in news %}
 		<h2><a href="{% url 'post_detail' i.id %}">{{ i.title }}</a></h2>
 		<p><small>{{ i.author }}</small></p>

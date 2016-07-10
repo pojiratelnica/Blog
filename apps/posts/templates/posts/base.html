@@ -9,11 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog</title>
+    <title>9gag clone</title>
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{% static 'bootstrap/css/blog-post.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/font-awesome.css' %}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Start</a>
+                <a class="navbar-brand" href="{% url 'posts_list' %}">9GAG</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -68,14 +69,18 @@
 
                 <!-- Blog Search Well -->
                 <div class="well">
-                    <h4>Blog Search</h4>
+                    <h4>Фильтрация</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
+                        <!-- <input type="text" class="form-control"> -->
+                        <!-- <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
-                        </span>
+                        </span> -->
+                        <a href="{% url 'by_likes_down' %}" class="btn btn-primary">Like <span class="fa fa-lg fa-sort-amount-asc"></span></a>
+                        <a href="{% url 'by_likes_up' %}" class="btn btn-primary">Like <span class="fa fa-lg fa-sort-amount-desc"></span></a>
+                        <a href="{% url 'by_dislikes_down' %}" class="btn btn-danger">Dislike <span class="fa fa-lg fa-sort-amount-asc"></span></a>
+                        <a href="{% url 'by_dislikes_up' %}" class="btn btn-danger">Dislike <span class="fa fa-lg fa-sort-amount-desc"></span></a>
                     </div>
                     <!-- /.input-group -->
                 </div>

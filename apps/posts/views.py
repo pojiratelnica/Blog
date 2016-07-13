@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 from models import Posts, Categories, Comments
 from django.shortcuts import redirect
 
@@ -25,10 +26,13 @@ def post_detail(request, post_id):
 
 
 def by_category_list(request, category_slug):
-    category = Categories.objects.get(slug=category_slug)
+    try:
+        category = Categories.objects.get(slug=category_slug)
+    except Categories.DoesNotExist:
+        raise Http404
     context = {
-        'post': category.posts_set.all(),
-        'categories': Categories.objects.all(),
+        'news': category.posts_set.all(),
+        'categories': Categories.objects.all()
     }
     return render(request, 'posts/posts_list.html', context)
 
@@ -47,37 +51,17 @@ def dislikes(request, post_id):
     return redirect('/index')
 
 
-def by_likes_down(request):
-    posts = Posts.objects.all().order_by('likes')
+def by_likes_filter(request, filter_by):
+    if filter_by == 'lup':
+        posts = Posts.objects.all().order_by('-likes')
+    elif filter_by == 'ldown':
+        posts = Posts.objects.all().order_by('likes')
+    elif filter_by == 'dup':
+        posts = Posts.objects.all().order_by('-dislikes')
+    elif filter_by == 'ddown':
+        posts = Posts.objects.all().order_by('dislikes')
     context = {
         'news': posts,
         'categories': Categories.objects.all()
-    }
-    return render(request, 'posts/posts_like.html', context)
-
-
-def by_likes_up(request):
-    posts = Posts.objects.all().order_by('-likes')
-    context = {
-        'news': posts,
-        'categories': Categories.objects.all(),
-    }
-    return render(request, 'posts/posts_like.html', context)
-
-
-def by_dislikes_down(request):
-    posts = Posts.objects.all().order_by('dislikes')
-    context = {
-        'news': posts,
-        'categories': Categories.objects.all()
-    }
-    return render(request, 'posts/posts_like.html', context)
-
-
-def by_dislikes_up(request):
-    posts = Posts.objects.all().order_by('-dislikes')
-    context = {
-        'news': posts,
-        'categories': Categories.objects.all(),
     }
     return render(request, 'posts/posts_like.html', context)

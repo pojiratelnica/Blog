@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 from models import Posts, Categories, Comments
 from django.shortcuts import redirect
+from forms import PostsForm
 
 # Create your views here.
 
@@ -65,3 +66,22 @@ def by_likes_filter(request, filter_by):
         'categories': Categories.objects.all()
     }
     return render(request, 'posts/posts_like.html', context)
+
+
+def create_post(request):
+    form = PostsForm()
+    if request.method == 'POST':
+        form = PostsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/index')
+    return render(request, 'posts/create_post.html', {'form': form})
+
+
+def create_category(request):
+    if 'category_title' in request.GET and 'category_slug' in request.GET:
+        Categories.objects.create(
+            title=request.GET['category_title'],
+            slug=request.GET['category_slug']
+        )
+    return render(request, 'posts/create_category.html', {})

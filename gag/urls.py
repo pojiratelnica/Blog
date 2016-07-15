@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -21,11 +21,14 @@ from apps.posts import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^redactor/', include('redactor.urls')),
     url(r'^index/$', views.posts_list, name='posts_list'),
     url(r'^index/(?P<post_id>[0-9]+)/$', views.post_detail, name='post_detail'),
     url(r'^like/(?P<post_id>[0-9]+)/$', views.likes, name='likes'),
     url(r'^dislike/(?P<post_id>[0-9]+)/$', views.dislikes, name='dislikes'),
     url(r'^by_likes_filter/(?P<filter_by>\w+)/$', views.by_likes_filter, name='by_likes_filter'),
     url(r'^categories/(?P<category_slug>\w+)/$', views.by_category_list, name='by_category_list'),
+    url(r'^category/$', views.create_category, name='create_category'),
+    url(r'^post_create/$', views.create_post, name='create_post'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

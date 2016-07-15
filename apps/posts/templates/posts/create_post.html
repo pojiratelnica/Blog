@@ -2,9 +2,22 @@
 
 {% block content %}
 	<h1>Создать новый пост</h1>
-	<form method="POST" enctype="multipart/form-data">{% csrf_token %}
-  		{{ form.as_p }}
-  		<input type="submit">
+	<form method="POST" class="col-lg-12" enctype="multipart/form-data">{% csrf_token %}
+<!--   		<p><label> Наименование:  </label>{{ form.title }}</p>
+  		<p><label> Slug:  </label>{{ form.slug }}</p>
+  		<p><label> Автор:  </label>{{ form.author }}</p>
+  		<p><label> Категория:  </label>{{ form.category }}</p>
+  		<p><label> Картинка:  </label>{{ form.image }}</p>
+  		<p><label> Текст:  </label>{{ form.text }}</p>
+  		<p><label> Отображение:  </label>{{ form.display }}</p>
+  		<p><label> Лайк:  </label>{{ form.likes }}</p>
+  		<p><label> Дизлайк:  </label>{{ form.dislikes }}</p>
+     -->
+    	{{form.as_p}}
+    
+    
+  		<input type="submit" value="Скидышь" class="btn btn-primary">
+  		<!-- <p><button type="submit" class="btn btn-default">Скидышь</button></p> -->
 	</form>
 
 {% endblock %}

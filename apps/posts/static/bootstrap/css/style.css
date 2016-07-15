@@ -1,5 +1,7 @@
-.navbar-inverse{
-	background-color: pink;
-	border-radius: 50px;
-	border: solid 1px pink;
+.navbar-brand{
+	margin-top: 0px;
+	padding: 0px;
+}
+.navbar-header{
+	padding: 0px;
 }

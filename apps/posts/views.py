@@ -69,12 +69,10 @@ def by_likes_filter(request, filter_by):
 
 
 def create_post(request):
-    form = PostsForm()
-    if request.method == 'POST':
-        form = PostsForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/index')
+    form = PostsForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/index')
     return render(request, 'posts/create_post.html', {'form': form})
 
 

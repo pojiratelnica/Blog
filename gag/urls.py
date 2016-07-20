@@ -30,5 +30,7 @@ urlpatterns = [
     url(r'^categories/(?P<category_slug>\w+)/$', views.by_category_list, name='by_category_list'),
     url(r'^category/$', views.create_category, name='create_category'),
     url(r'^post_create/$', views.create_post, name='create_post'),
+    url(r'^edit_post/(?P<post_id>[0-9]+)/$', views.edit_post, name='edit_post'),
+    url(r'^delete_post/(?P<post_id>[0-9]+)/$', views.delete_post, name='delete_post'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

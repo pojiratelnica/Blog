@@ -40,12 +40,6 @@ class PostsForm(forms.ModelForm):
             raise forms.ValidationError(u'Давай больше пиши')
         return title
 
-    def clean_slug(self):
-        slug = self.cleaned_data['slug']
-        if Posts.objects.filter(slug=slug).exists():
-            raise forms.ValidationError(u'Такой уже есть')
-        return slug
-
     def clean_image(self):
         image = self.cleaned_data.get('image', False)
         img = Image.open(image)

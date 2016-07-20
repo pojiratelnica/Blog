@@ -83,3 +83,18 @@ def create_category(request):
             slug=request.GET['category_slug']
         )
     return render(request, 'posts/create_category.html', {})
+
+
+def edit_post(request, post_id):
+    post = Posts.objects.get(id=post_id)
+    form = PostsForm(request.POST or None, request.FILES or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('/index')
+    return render(request, 'posts/create_post.html', {'form': form})
+
+
+def delete_post(request, post_id):
+    post = Posts.objects.get(id=post_id)
+    post.delete()
+    return redirect('/index')

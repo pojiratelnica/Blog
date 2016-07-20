@@ -98,3 +98,6 @@ def delete_post(request, post_id):
     post = Posts.objects.get(id=post_id)
     post.delete()
     return redirect('/index')
+
+
+# def search_post():

@@ -4,7 +4,7 @@
 	<h1>Manga list</h1>
 	
 	{% for i in news %}
-		<p class="pull-right"><a href="{% url 'edit_post' i.id %}" class="btn btn-warning"><span class="fa fa-lg fa-edit"></span></a> <a href="{% url 'delete_post' i.id %}" class="btn btn-danger"><span class="fa fa-lg fa-close"></span></a></p>
+		<p class="pull-right"><a href="{% url 'edit_post' i.id %}" class="btn btn-xs btn-warning"><span class="fa fa-sm fa-edit"></span></a> <a href="{% url 'delete_post' i.id %}" class="btn btn-xs btn-danger"><span class="fa fa-sm fa-close"></span></a></p>
 		<h2><a href="{% url 'post_detail' i.id %}">{{ i.title }}</a></h2>
 		
 		<p><small>{{ i.author }}</small></p>

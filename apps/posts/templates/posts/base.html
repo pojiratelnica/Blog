@@ -52,23 +52,33 @@
                                 <li><a href="{% url 'by_category_list' category.slug %}">{{ category.title }}</a></li>
                             {% endfor %}
                        </ul> 
-                    <!-- </li> 
-                        <a href="{% url 'by_likes_filter' 'ldown' %}" class="btn btn-primary" style="margin-left:10px; margin-right:10px; color:#fff;">Like <span class="fa fa-lg fa-sort-amount-asc"></span></a>
-                    <li>
-                        
                     </li>
-                        <a href="{% url 'by_likes_filter' 'ddown' %}" class="btn btn-danger" style="margin-left:10px; margin-right:10px; color:#fff;">Dislike <span class="fa fa-lg fa-sort-amount-asc"></span></a>
-                    <li> -->
+                    <li>
+                        <form class="navbar-form navbar-left" role="search" action="{% url 'search_post' %}">
+                            <div class="form-group">
+                            <input type="text" class="form-control" name="q" placeholder="Ищи">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
                     </li>
                 </ul>
                 <div class="pull-right">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <a href="" >Вход</a>
-                        </li>
-                        <li>
-                            <a href="" >Регистрация</a>
-                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <a href="">Привет,  {{request.user.username }} </a>  
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">Выйти</a>  
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'login' %}" >Вход</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'signup' %}" >Регистрация</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -125,12 +135,13 @@
                 </div> -->
 
                 <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Создание:</h4>
-                    <p><a href="{% url 'create_post' %}" class="btn btn-success">Создать пост <span class="fa fa-lg fa-asterisk"></span></a></p>
-                    <p><a href="{% url 'create_category' %}" class="btn btn-success">Создать категорию <span class="fa fa-lg fa-asterisk"></span></a></p>
-                </div>
-
+                {% if request.user.is_authenticated %}
+                    <div class="well">
+                        <h4>Создание:</h4>
+                        <p><a href="{% url 'create_post' %}" class="btn btn-success">Создать пост <span class="fa fa-lg fa-asterisk"></span></a></p>
+                        <p><a href="{% url 'create_category' %}" class="btn btn-success">Создать категорию <span class="fa fa-lg fa-asterisk"></span></a></p>
+                    </div>
+                {% endif %}
             </div>
 
         </div>

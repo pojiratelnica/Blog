@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from apps.posts import views
+from apps.accounts import urls as accounts_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,5 +33,8 @@ urlpatterns = [
     url(r'^post_create/$', views.create_post, name='create_post'),
     url(r'^edit_post/(?P<post_id>[0-9]+)/$', views.edit_post, name='edit_post'),
     url(r'^delete_post/(?P<post_id>[0-9]+)/$', views.delete_post, name='delete_post'),
+    url(r'^search_post/$', views.search_post, name='search_post'),
+    
+    url(r'^accounts/', include(accounts_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
